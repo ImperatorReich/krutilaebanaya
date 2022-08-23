@@ -1,5 +1,7 @@
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
 import requests
-from pyrogram import Client, filters, enums
+from pyrogram import Client, filters
 from pyrogram.errors import FloodWait
 from time import sleep
 
@@ -27,9 +29,9 @@ app = Client("my_account", api_id=api_id, api_hash=api_hash)
 
 @app.on_message(filters.chat(bindchat))
 def nakrut(_,msg):
-    print(msg.id)
+    print(msg.message_id)
     chat = app.get_chat(msg.sender_chat.id)
-    link = "https://t.me/" + chat.username + '/' + str(msg.id)
+    link = "https://t.me/" + chat.username + '/' + str(msg.message_id)
     a = requests.get('https://wiq.ru/api/?key=' + key_wiqru + '&action=create&service=' + id_servicce_wiqru + '&quantity=' + summ_of_service_wiqru + '&link=' + link)
     print(a.text)
 
